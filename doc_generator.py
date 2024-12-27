@@ -10,11 +10,24 @@ from reportlab.platypus import SimpleDocTemplate, Paragraph
 
 # Function to generate the final Sale Deed PDF based on reference template
 def generate_document_from_template(input_data, document_type):
-    # Path to reference directory
-    reference_dir = 'reference'  # Specify your directory path here
-    template_txt_path = os.path.join(reference_dir, f"{document_type}.txt")
+    # Create a BytesIO buffer to store PDF data
+    pdf_output = BytesIO()
+    
+    # Define PDF document layout
+    c = canvas.Canvas(pdf_output, pagesize=letter)
+    width, height = letter
+    margin = 40
+    line_height = 14
+    x_pos = margin
+    y_pos = height - margin
+    
+    # Set the font for the document
+    c.setFont("Helvetica", 12)
 
-    # Read the reference template text file
+    # Read the reference template text file for the document
+    reference_dir = 'reference'  # Directory where your template text files are stored
+    template_txt_path = os.path.join(reference_dir, f"{document_type}.txt")
+    
     try:
         with open(template_txt_path, 'r') as file:
             template_text = file.read()
@@ -22,40 +35,57 @@ def generate_document_from_template(input_data, document_type):
         st.error(f"Error reading template: {e}")
         return None
 
-    # Replace placeholders in the template text with actual input data
+    # Replace placeholders in the template with actual input data
     for placeholder, value in input_data.items():
         template_text = template_text.replace(f"{{{placeholder}}}", value)
-
-    # Create PDF from the modified text
-    pdf_output = BytesIO()
-    c = canvas.Canvas(pdf_output, pagesize=letter)
-
-    # Configure text starting position
-    width, height = letter
-    margin = 40
-    line_height = 14
-    x_pos = margin
-    y_pos = height - margin
-
-    # Write text with line wrapping and pagination
+    
+    # Split the template text into lines and handle text wrapping
     lines = template_text.split('\n')
     for line in lines:
-        wrapped_lines = utils.simpleSplit(line, "Helvetica", 12, width - 2 * margin)
+        # Wrap text to ensure it doesn't overflow the page
+        wrapped_lines = wrap_text(c, line, width - 2 * margin)  # Wrap within page width
         for wrapped_line in wrapped_lines:
-            if y_pos <= margin:  # Check if the text exceeds the page
+            # Check if text exceeds the page and if so, add a new page
+            if y_pos <= margin:
                 c.showPage()
                 y_pos = height - margin
                 c.setFont("Helvetica", 12)
+            
             c.drawString(x_pos, y_pos, wrapped_line)
-            y_pos -= line_height
+            y_pos -= line_height  # Move down for the next line
 
     # Finalize the PDF
     c.save()
 
+    # Move the buffer pointer to the start
     pdf_output.seek(0)
+    
     return pdf_output
 
-# Function to generate download link for PDF
+# Function to wrap text within a given width (to prevent overflow)
+def wrap_text(c, text, max_width):
+    # Break text into lines that fit within the max_width
+    from reportlab.lib.pagesizes import letter
+    width, height = letter
+    lines = []
+    line = ''
+    
+    # Split the text into words
+    for word in text.split(' '):
+        test_line = line + word + ' '
+        if c.stringWidth(test_line, "Helvetica", 12) < max_width:
+            line = test_line
+        else:
+            if line:
+                lines.append(line)
+            line = word + ' '
+    
+    if line:
+        lines.append(line)  # Add the last line
+    
+    return lines
+
+# Function to generate a download link for the PDF
 def get_pdf_download_link(pdf_output, filename="Generated_Document.pdf"):
     b64_pdf = base64.b64encode(pdf_output.read()).decode("utf-8")
     href = f'<iframe src="data:application/pdf;base64,{b64_pdf}" width="700" height="500" style="border:none;"></iframe>'
@@ -140,18 +170,66 @@ def main():
         input_data["volume_number"] = st.text_input("Volume Number")
         input_data["page_number"] = st.text_input("Page Number")
 
-
+    
     elif document_type == "Will":
-        input_data["TESTATOR_NAME"] = st.text_input("Testator's Name")
-        input_data["BENEFICIARY_NAME"] = st.text_input("Beneficiary's Name")
-        input_data["ASSETS"] = st.text_area("Assets Details")
-        input_data["EXECUTION_DATE"] = st.date_input("Date of Will").strftime("%d-%m-%Y")
+        input_data["testator_name"] = st.text_input("Testator's Full Name")
+        input_data["testator_parent_name"] = st.text_input("Testator's Parent's Name")
+        input_data["testator_address"] = st.text_area("Testator's Address")
+        input_data["testator_age"] = st.text_input("Testator's Age")
+        input_data["testator_religion"] = st.text_input("Testator's Religion")
+        input_data["testator_occupation"] = st.text_input("Testator's Occupation")
+        
+        input_data["executor1_name"] = st.text_input("Executor 1 Full Name")
+        input_data["executor1_parent_name"] = st.text_input("Executor 1 Parent's Name")
+        input_data["executor1_address"] = st.text_area("Executor 1 Address")
+        input_data["executor1_age"] = st.text_input("Executor 1 Age")
+        input_data["executor1_religion"] = st.text_input("Executor 1 Religion")
+        input_data["executor1_occupation"] = st.text_input("Executor 1 Occupation")
+        
+        input_data["executor2_name"] = st.text_input("Executor 2 Full Name")
+        input_data["executor2_parent_name"] = st.text_input("Executor 2 Parent's Name")
+        input_data["executor2_address"] = st.text_area("Executor 2 Address")
+        input_data["executor2_age"] = st.text_input("Executor 2 Age")
+        input_data["executor2_religion"] = st.text_input("Executor 2 Religion")
+        input_data["executor2_occupation"] = st.text_input("Executor 2 Occupation")
 
+        input_data["executor3_name"] = st.text_input("Executor 3 Full Name")
+        input_data["executor3_parent_name"] = st.text_input("Executor 3 Parent's Name")
+        input_data["executor3_address"] = st.text_area("Executor 3 Address")
+        input_data["executor3_age"] = st.text_input("Executor 3 Age")
+        input_data["executor3_religion"] = st.text_input("Executor 3 Religion")
+        input_data["executor3_occupation"] = st.text_input("Executor 3 Occupation")
+        
+        input_data["family_details"] = st.text_area("Family Details")
+        input_data["assets"] = st.text_area("Assets Details")
+        input_data["beneficiary_name"] = st.text_input("Beneficiary's Name")
+        input_data["execution_date"] = st.date_input("Date of Will").strftime("%d-%m-%Y")
+
+        
     elif document_type == "Power of Attorney":
-        input_data["PRINCIPAL_NAME"] = st.text_input("Principal's Name")
-        input_data["ATTORNEY_NAME"] = st.text_input("Attorney's Name")
-        input_data["AUTHORITY"] = st.text_area("Powers Given")
-        input_data["EXECUTION_DATE"] = st.date_input("Date of Execution").strftime("%d-%m-%Y")
+        input_data["executant_name"] = st.text_input("Testator's Name")
+        input_data["executant_relation"] = st.text_input("Testator's Relationship")
+        input_data["executant_age"] = st.text_input("Testator's Age")
+        input_data["executant_address"] = st.text_input("Testator's Address")
+
+        input_data["attorney_name"] = st.text_input("Attorney's Name")
+        input_data["attorney_relation"] = st.text_input("Attorney's Relationship")
+        input_data["attorney_age"] = st.text_input("Attorney's Age")
+        input_data["attorney_address"] = st.text_input("Attorney's Address")
+
+        input_data["property_no"] = st.text_input("Property Number")
+        input_data["property_measurements"] = st.text_input("Property Measurements")
+        input_data["boundary_east"] = st.text_input("East Boundary")
+        input_data["boundary_west"] = st.text_input("West Boundary")
+        input_data["boundary_south"] = st.text_input("South Boundary")
+        input_data["boundary_north"] = st.text_input("North Boundary")
+
+        input_data["execution_day"] = st.text_input("Day of Execution")
+        input_data["execution_month"] = st.text_input("Month of Execution")
+        input_data["execution_year"] = st.text_input("Year of Execution")
+
+        input_data["witness_1"] = st.text_input("First Witness")
+        input_data["witness_2"] = st.text_input("Second Witness")
 
     if st.button("Generate and Preview Document"):
         if all(input_data.values()):

@@ -1,0 +1,79 @@
+WILL-DEED
+
+I Sri. {testator_name}, S/o. {testator_parent_name}, residing at  
+{testator_address}, aged about {testator_age} years, {testator_religion}  
+by religion, occupation {testator_occupation}, do make this my last will  
+and testament.
+
+1. I have not made any will or other testamentary document, but if any  
+   made, I hereby revoke all previous wills and codicils, if any, and  
+   declare this to be my last will and testament.
+
+2. I appoint the following as the executor of this will and trustees of  
+   my estate:  
+   (1) Sri. {executor1_name}, S/o. {executor1_parent_name}, residing at  
+       {executor1_address}, aged about {executor1_age} years,  
+       {executor1_religion} by religion, occupation {executor1_occupation}.  
+   (2) Sri. {executor2_name}, S/o. {executor2_parent_name}, residing at  
+       {executor2_address}, aged about {executor2_age} years,  
+       {executor2_religion} by religion, occupation {executor2_occupation}.  
+   (3) Sri. {executor3_name}, S/o. {executor3_parent_name}, residing at  
+       {executor3_address}, aged about {executor3_age} years,  
+       {executor3_religion} by religion, occupation {executor3_occupation}.
+
+3. My family consists of {family_members}.
+
+4. My property consists of:  
+   (a) {property1}  
+   (b) {property2}  
+   (c) {property3}, etc.
+
+5. I bequeath all my property, in whatever form existing at the time  
+   of my death, to the said executor and trustees to hold the same on  
+   trust for the benefit of my wife Smt. {wife_name}, for her lifetime  
+   and till her death as hereinafter provided.
+
+6. My executors and trustees shall:  
+   - Spend the necessary money for managing the property out of the income.  
+   - Pay the net income to my wife, which will belong to her absolutely  
+     without liability to account for it.  
+   - Spend amounts from the corpus of the estate for her medical expenses  
+     or pilgrimage if required.  
+   - However, they shall not sell or mortgage my immovable property.
+
+7. Upon my wife's death, or if she predeceases me, upon my death, all  
+   my estate will belong equally to my children:  
+   (a) {child1_name}  
+   (b) {child2_name}  
+   (c) {child3_name}.  
+   The trustees shall transfer the estate to them by executing proper  
+   documents.
+
+8. If any of the children are minors at the time of my or my wife’s  
+   death, the trustees shall hold the property in trust until the youngest  
+   child attains majority. The income shall be used for their maintenance  
+   and education.
+
+9. My executor and trustees shall:  
+   - Obtain probate of this will from a competent court, if required by law.  
+   - Pay all probate duties, taxes, and other liabilities as the first charge.
+
+10. I have made this will out of my free will, in sound health, and with  
+    full understanding.  
+
+In witness whereof, I have put my signature hereunder in the presence  
+of witnesses on this {will_day} day of {will_month}, {will_year}.
+
+Signed by the within-named testator,  
+Sri. {testator_name}, in the presence of witnesses, who at his request  
+and in the presence of each other have put their signatures below.  
+
+TESTATOR:  
+Signature: ______________________  
+
+WITNESSES:  
+1. Sri.  
+   Address: 
+
+2. Sri. 
+   Address:  

@@ -1,0 +1,67 @@
+GENERAL POWER OF ATTORNEY
+KNOW ALL MEN BY THESE PRESENTS THAT I, {executant_name}  
+S/o. / W/o. {executant_relation} aged {executant_age} years,  
+residing at {executant_address} do hereby nominate, appoint,  
+constitute and appoint Sri./Smt. {attorney_name} S/o. / W/o.  
+{attorney_relation} aged about {attorney_age} years residing at  
+{attorney_address} as my true and lawful power of attorney holder  
+to do the following acts, deeds and things on my behalf and in my  
+name in respect of the schedule property.  
+
+Whereas, the sole and absolute owner in and possession of the  
+schedule property, which is self acquired property.  
+Whereas, I am being unable to maintain, manage and look after  
+the affairs of the said property, I hereby appoint the said attorney  
+holder to the following acts, deeds and perform things on my behalf  
+and in my name with entire powers thereon.
+
+1. To appear before the authorities of BDA Corporation, Revenue office  
+   / Village Panchayath Office, or any other office pertaining to state  
+   or central Government or any other office and to represent in all respect.  
+
+2. To make payment of taxes, rates, cesses, assessments, to get plan sanction  
+   to any competent authority levied by them from time to time on my behalf.  
+
+3. To appoint advocate/s, pleader/s, prosecutor/s, or any other competent authority  
+   for all purpose.  
+
+4. To file cases either civil or criminal in any competent court/s and to complete  
+   the proceedings.  
+
+5. To apply and to obtain relevant document in respect of the schedule property  
+   on my behalf, and to put up any constructions in the schedule property.  
+
+6. To sign all documents, papers, agreements, affidavits forms vakalaths, receipts,  
+   declarations, etc., and to derive all kind of benefits and profits in respect of the  
+   schedule property on my behalf.  
+
+7. I have not given any power to this attorney holder to alienate property.  
+I hereby agree to ratify and confirm all and whatsoever that my said attorney shall  
+lawfully do or cause to be done by virtue of this document.
+
+SCHEDULE  
+All the piece and parcel of immovable property bearing No. {property_no}  
+Measuring {property_measurements}  
+Bounded by:-  
+    On the East : {boundary_east}  
+    On the West : {boundary_west}  
+    On the South : {boundary_south}  
+    On the North : {boundary_north}  
+
+Stamp duty paid as per Article 41(f) of the Schedule to the Karnataka Stamp Act,  
+1957.  
+
+IN WITNESS WHEREOF I, the executant above named, have signed to this general  
+power of attorney on this {execution_day} day of {execution_month} {execution_year}.  
+
+WITNESS:  
+{witness_1}  
+{witness_2}  
+
+EXECUTANT  
+
+[*Full details of the property number such as Khata number, street/road with reference  
+to the local authority records and boundaries shall be furnished. If the scheduled-A property  
+is a Flat / Apartment, details of the property on which the Flat / Apartment is constructed,  
+flat number, floor number, name of the apartment etc., full details of the schedule-A property  
+so as to identify shall be furnished.]
