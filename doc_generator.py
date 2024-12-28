@@ -91,9 +91,171 @@ def get_pdf_download_link(pdf_output, filename="Generated_Document.pdf"):
     href = f'<iframe src="data:application/pdf;base64,{b64_pdf}" width="700" height="500" style="border:none;"></iframe>'
     return href
 
+def add_custom_css():
+    st.markdown("""
+        <style>
+
+            /* Main container and background */
+            .stApp {
+                background: linear-gradient(180deg, #EEF2FF 0%, #FFFFFF 100%);
+            }
+
+            /* Make text inputs visible with proper contrast */
+            .stTextInput > div > div > input,
+            .stSelectbox > div > div > div,
+            .stTextArea > div > div > textarea {
+                color: #111827 !important;
+                background-color: white !important;
+                border: 1px solid #d1d5db !important;
+                border-radius: 8px !important;
+                font-size: 1rem !important;
+                line-height: 1.5 !important;
+            }
+
+            /* Input focus states */
+            .stTextInput > div > div > input:focus,
+            .stSelectbox > div > div > div:focus,
+            .stTextArea > div > div > textarea:focus {
+                border-color: #2563EB !important ;
+                box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2) !important;
+            }
+
+            /* Labels */
+            .stTextInput > label,
+            .stSelectbox > label,
+            .stTextArea > label {
+                color: #374151 !important;
+                font-size: 1rem !important;
+                font-weight: 500 !important;
+                margin-bottom: 0.5rem !important;
+            }
+
+            /* Header styling */
+            .header {
+                background-color: #2563EB;
+                color: white;
+                padding: 2rem;
+                border-radius: 0 0 1rem 1rem;
+                margin-bottom: 2rem;
+                text-align: center;
+                box-shadow: 0 4px 6px rgba(37, 99, 235, 0.1);
+            }
+
+            .header h1 {
+                margin: 0;
+                font-size: 2.5rem;
+                font-weight: bold;
+            }
+
+            /* Subheaders */
+            .stMarkdown h3 {
+                color: #000000 !important;
+                font-size: 1.5rem;
+                font-weight: 600;
+                margin-top: 2rem;
+                margin-bottom: 1rem;
+                padding-bottom: 0.5rem;
+                border-bottom: 2px solid #E5E7EB;
+            }
+
+            /* Button styling */
+            .stButton > button ,
+            st.download_button {
+                background-color: #2563EB !important;
+                color: white !important;
+                border: none !important;
+                padding: 0.75rem 2rem !important;
+                border-radius: 8px !important;
+                font-weight: 500 !important;
+                transition: all 0.3s ease !important;
+                width: auto !important;
+            }
+
+            .stButton > button:hover {
+                background-color: #1D4ED8 !important;
+                box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2) !important;
+            }
+
+            /* Container styling */
+            .content-container {
+                background-color: white;
+                padding: 2rem;
+                border-radius: 1rem;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                margin: 2rem auto;
+            }
+
+            /* Error messages */
+            .stAlert {
+                background-color: #FEE2E2 !important;
+                color: #991B1B !important;
+                padding: 1rem !important;
+                border-radius: 8px !important;
+                border: 1px solid #FCA5A5 !important;
+            }
+
+            /* Footer styling */
+            # .footer {
+            #     background-color: #2563EB;
+            #     color: white;
+            #     padding: 1rem;
+            #     text-align: center;
+            #     position: fixed;
+            #     bottom: 0;
+            #     width: 100%;
+            #     left: 0;
+            #     font-size: 0.875rem;
+            # }
+
+            /* Hide Streamlit branding */
+            #MainMenu {visibility: hidden;}
+            footer {visibility: hidden;}
+
+            /* Spacing for footer */
+            .main-content {
+                margin-bottom: 5rem;
+            }
+
+            /* Date input styling */
+            .stDateInput > div > div > input {
+                color: #111827 !important;
+                background-color: white !important;
+                border: 1px solid #d1d5db !important;
+                padding: 0.75rem !important;
+                border-radius: 8px !important;
+                font-size: 1rem !important;
+            }
+
+            /* PDF preview container */
+            .pdf-preview {
+                margin-top: 2rem;
+                padding: 1rem;
+                border-radius: 8px;
+                background-color: #F9FAFB;
+            }
+
+            /* Selectbox styling */
+            .stSelectbox > div > div > div {
+                background-color: white !important;
+            }
+
+            # /* Make sure text is visible in all inputs */
+            # input, select, textarea {
+            #     color: #111827 !important;
+            # }
+        </style>
+        
+        
+    """, unsafe_allow_html=True)
+
 # Streamlit App for input and PDF generation
 def main():
-    st.title("Legal Document Generator")
+    add_custom_css()
+
+    st.markdown('<div class="header"><h1>Legal Document Generator</h1></div>', unsafe_allow_html=True)
+    
+    st.markdown('<div class="main-content">', unsafe_allow_html=True)
+    #st.title("Legal Document Generator")
 
     # Select document type
     document_type = st.selectbox("Select Document Type", ["Sale Deed", "Will", "Power of Attorney"])
@@ -107,7 +269,7 @@ def main():
         input_data["year"] = st.text_input("Year of Execution")
         
         # Seller details
-        st.subheader("Seller Details")
+        #st.subheader("Seller Details")
         input_data["seller_name"] = st.text_input("Seller's Name")
         input_data["seller_parent_name"] = st.text_input("Seller's Father/Spouse Name")
         input_data["seller_occupation"] = st.text_input("Seller's Occupation")
@@ -116,7 +278,7 @@ def main():
         input_data["seller_address_line2"] = st.text_input("Seller's Address Line 2")
 
         # Purchaser details
-        st.subheader("Purchaser Details")
+        #st.subheader("Purchaser Details")
         input_data["purchaser_name"] = st.text_input("Purchaser's Name")
         input_data["purchaser_parent_name"] = st.text_input("Purchaser's Father/Spouse Name")
         input_data["purchaser_occupation"] = st.text_input("Purchaser's Occupation")
@@ -125,7 +287,7 @@ def main():
         input_data["purchaser_address_line2"] = st.text_input("Purchaser's Address Line 2")
 
         # Property details
-        st.subheader("Property Details")
+        #st.subheader("Property Details")
         input_data["property_number"] = st.text_input("Property Number")
         input_data["property_name"] = st.text_input("Property Name")
         input_data["property_location"] = st.text_input("Property Location")
@@ -135,7 +297,7 @@ def main():
              "To defray medical expenses", "Domestic necessities"])
 
         # Payment details
-        st.subheader("Payment Details")
+        #st.subheader("Payment Details")
         input_data["total_amount"] = st.text_input("Total Sale Amount (in Rs.)")
         input_data["total_amount_words"] = st.text_input("Total Amount in Words")
         input_data["cheque_number"] = st.text_input("Cheque Number")
@@ -144,7 +306,7 @@ def main():
         input_data["remaining_amount"] = st.text_input("Remaining Amount")
 
         # Schedule property details
-        st.subheader("Schedule Property Details")
+        #st.subheader("Schedule Property Details")
         input_data["schedule_property_number"] = st.text_input("Schedule Property Number")
         input_data["property_measurement"] = st.text_input("Property Measurement")
         input_data["east_boundary"] = st.text_input("Eastern Boundary")
@@ -155,7 +317,7 @@ def main():
         input_data["market_value_words"] = st.text_input("Market Value in Words")
 
         # Witness and execution details
-        st.subheader("Witness Details")
+        #st.subheader("Witness Details")
         input_data["deed_place"] = st.text_input("Place of Execution")
         input_data["deed_day"] = st.text_input("Day of Signing")
         input_data["deed_month"] = st.text_input("Month of Signing")
@@ -163,7 +325,7 @@ def main():
         input_data["witness2_name"] = st.text_input("Witness 2 Name")
 
         # Registration details
-        st.subheader("Registration Details (if applicable)")
+        #st.subheader("Registration Details (if applicable)")
         input_data["previous_owner"] = st.text_input("Previous Owner's Name")
         input_data["document_number"] = st.text_input("Document Number")
         input_data["book_number"] = st.text_input("Book Number")
@@ -250,6 +412,10 @@ def main():
                 )
         else:
             st.error("Please fill out all fields to generate the document.")
+    st.markdown('</div>', unsafe_allow_html=True)
+    
+    st.markdown('<div class="footer"><p>&copy; 2024 Legal Document Generator</p></div>', unsafe_allow_html=True)
+
 
 if __name__ == "__main__":
     main()
